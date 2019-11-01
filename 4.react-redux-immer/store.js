@@ -25,6 +25,7 @@ const thunkMiddleware = (store) => (next) => (action) => {
   return next(action); // 동기
 };
 
+
 const enhancer = process.env.NODE_ENV === 'production'
   ? compose(
     applyMiddleware(

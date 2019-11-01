@@ -4,6 +4,7 @@ const { logIn, logOut } = require('./actions/user');
 
 const App = () => {
   const user = useSelector((state) => state.user);
+  const posts = useSelector((state) => state.posts);
   const dispatch = useDispatch();
 
   const onClick = useCallback(() => {
