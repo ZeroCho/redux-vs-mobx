@@ -1,5 +1,5 @@
 {
-  "name": "5.mobx",
+  "name": "6.mobx",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mobx": "^5.14.2"
+    "mobx": "^6.0.4"
   }
 }

@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  name: 'lotto-dev',
+  name: 'mobx-react',
   mode: 'development',
   devtool: 'eval',
   resolve: {
@@ -31,6 +31,11 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].js',
-    publicPath: '/dist',
+    publicPath: '/dist/',
   },
+  devServer: {
+    port: 3071,
+    publicPath: '/dist/',
+    hot: true,
+  }
 };

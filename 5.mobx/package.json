@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mobx": "^5.14.2"
+    "mobx": "^6.0.4"
   }
 }
