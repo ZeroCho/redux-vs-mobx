@@ -2,7 +2,7 @@ const path = require('path');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 module.exports = {
-  name: 'mobx-react',
+  name: 'react-redux-toolkit',
   mode: 'development',
   devtool: 'eval',
   resolve: {
@@ -23,7 +23,7 @@ module.exports = {
           }],
           '@babel/preset-react',
         ],
-        plugins: ["react-refresh/babel", "@babel/plugin-proposal-class-properties"],
+        plugins: ["react-refresh/babel"]
       },
       exclude: path.join(__dirname, 'node_modules'),
     }],
@@ -34,10 +34,10 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].js',
-    publicPath: '/dist/',
+    publicPath: '/dist',
   },
   devServer: {
-    publicPath: '/dist/',
-    hot: true,
+    publicPath: '/dist',
+    hot: true
   }
 };

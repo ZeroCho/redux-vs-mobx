@@ -1,16 +1,28 @@
-const { observable, autorun, reaction, action, runInAction } = require('mobx');
+const { observable, autorun, reaction, action, runInAction, computed } = require('mobx');
 
-const userState = observable({
-  isLoggingIn: true,
-  data: null,
+const state = observable({
+  compA: 'a',
+  compB: 12,
+  compC: null,
 });
 
-const postState = observable([]);
+autorun(() => {
+  console.log('A changed', state.compA);
+  console.log('C changed', state.compC);
+});
+
+reaction(() => {
+  return state.compB;
+}, () => {
+  console.log('B reaction', state.compB);
+});
 
 runInAction(() => {
-  postState.push({ id: 1, content: '안녕하세요.' });
-  userState.data = {
-    id: 1,
-    nickname: 'zerocho',
-  };
+  state.compA = 'c';
+  state.compB = 25;
+  state.compC = 'c';
+});
+
+runInAction(() => {
+  state.compC = 'd';
 });

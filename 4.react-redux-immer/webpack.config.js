@@ -1,7 +1,8 @@
 const path = require('path');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 module.exports = {
-  name: 'lotto-dev',
+  name: 'react-redux-immer',
   mode: 'development',
   devtool: 'eval',
   resolve: {
@@ -22,15 +23,21 @@ module.exports = {
           }],
           '@babel/preset-react',
         ],
-        plugins: ["react-hot-loader/babel", "@babel/plugin-proposal-class-properties"]
+        plugins: ["react-refresh/babel", "@babel/plugin-proposal-class-properties"]
       },
       exclude: path.join(__dirname, 'node_modules'),
     }],
   },
-  plugins: [],
+  plugins: [
+    new ReactRefreshWebpackPlugin()
+  ],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].js',
     publicPath: '/dist',
   },
+  devServer: {
+    publicPath: '/dist',
+    hot: true
+  }
 };

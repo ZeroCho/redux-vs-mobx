@@ -1,11 +1,9 @@
 {
-  "name": "5.mobx",
+  "name": "7.mobx",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "dev": "webpack-dev-server --hot"
-  },
+  "scripts": {},
   "author": "",
   "license": "ISC",
   "dependencies": {

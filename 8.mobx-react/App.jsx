@@ -1,48 +1,51 @@
-import React, { useCallback } from 'react';
-import { useObserver, useLocalStore } from 'mobx-react';
+import React, { Component } from 'react';
+import { observer } from 'mobx-react';
+import { observable } from 'mobx';
 
-import useStore from './useStore';
+import { userStore, postStore } from './store';
 
-const App = () => {
-  const { userStore } = useStore();
-  console.log(userStore);
-
-  const state = useLocalStore(() => ({
+class App extends Component {
+  state = observable({
     name: '',
     password: '',
-    onChangeName(e) {
-      this.name = e.target.value;
-    },
-    onChangePassword(e) {
-      this.password = e.target.value;
-    }
-  }));
+  });
 
-  const onClick = useCallback(() => {
+  onClick = () => {
     userStore.logIn({
       nickname: 'zerocho',
       password: '비밀번호',
     });
-  }, []);
+  };
 
-  const onLogout = useCallback(() => {
+  onLogout = () => {
     userStore.logOut();
-  }, []);
+  };
 
-  return useObserver(() => (
-    <div>
-      {userStore.isLoggingIn
-        ? <div>로그인 중</div>
-        : userStore.data
-          ? <div>{userStore.data.nickname}</div>
-          : '로그인 해주세요.'}
-      {!userStore.data
-        ? <button onClick={onClick}>로그인</button>
-        : <button onClick={onLogout}>로그아웃</button>}
-      <input value={state.name} onChange={state.onChangeName} />
-      <input value={state.password} type="password" onChange={state.onChangePassword}  />
-    </div>
-  ));
-};
+  onChangeName = (e) => {
+    this.state.name = e.target.value;
+  };
 
-export default App;
+  onChangePassword = (e) => {
+    this.state.password = e.target.value;
+  };
+
+  render() {
+    return (
+      <div>
+        {userStore.isLoggingIn
+          ? <div>로그인 중</div>
+          : userStore.data
+            ? <div>{userStore.data.nickname}</div>
+            : '로그인 해주세요.'}
+        {!userStore.data
+          ? <button onClick={this.onClick}>로그인</button>
+          : <button onClick={this.onLogout}>로그아웃</button>}
+        <div>{postStore.data.length}</div>
+        <input value={this.state.name} onChange={this.onChangeName} />
+        <input value={this.state.password} type="password" onChange={this.onChangePassword}  />
+      </div>
+    );
+  }
+}
+
+export default observer(App);
