@@ -1,4 +1,4 @@
-const { configureStore, getDefaultMiddleware } = require('@reduxjs/toolkit');
+const { configureStore } = require('@reduxjs/toolkit');
 
 const reducer = require('./reducers');
 
@@ -9,7 +9,7 @@ const firstMiddleware = () => (next) => (action) => {
 
 const store = configureStore({
   reducer,
-  middleware: [firstMiddleware, ...getDefaultMiddleware()]
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(firstMiddleware),
 });
 
 module.exports = store;
